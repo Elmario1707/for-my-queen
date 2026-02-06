@@ -4,30 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>The Queen</title>
-    
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="apple-touch-icon" href="photo.jpg"> <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&family=Playfair+Display:italic,wght@400;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&family=Playfair+Display:italic,wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --gold: #D4AF37;
-            --dark: #0a0a0a;
-            --white: #ffffff;
-        }
-
-        body, html {
-            margin: 0; padding: 0;
-            background-color: var(--dark);
-            color: var(--white);
-            font-family: 'Montserrat', sans-serif;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            height: 100%;
-        }
-
-        /* Hero Section с её фото */
+        :root { --gold: #D4AF37; --dark: #0a0a0a; --white: #ffffff; }
+        body, html { margin: 0; padding: 0; background-color: var(--dark); color: var(--white); font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; height: 100%; }
+        
         .hero {
             height: 100vh;
             display: flex;
@@ -38,163 +23,102 @@
             background: linear-gradient(to bottom, rgba(10,10,10,0.4), #0a0a0a), url('photo.jpg');
             background-size: cover;
             background-position: center;
-            position: relative;
         }
 
-        h1 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 10vw, 5rem);
-            letter-spacing: 15px;
-            color: var(--gold);
-            margin: 10px 0;
-            text-transform: uppercase;
-        }
+        h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 5rem); letter-spacing: 12px; color: var(--gold); text-transform: uppercase; margin: 10px 0; }
 
-        /* Таймер в люкс стиле */
         .timer-container {
-            margin-top: 30px;
+            margin-top: 20px;
             background: rgba(0, 0, 0, 0.6);
-            padding: 25px;
-            backdrop-filter: blur(15px);
+            padding: 20px;
+            backdrop-filter: blur(10px);
             border: 1px solid var(--gold);
-            border-radius: 2px;
         }
 
-        .timer-grid {
-            display: flex;
-            gap: 25px;
-        }
+        .timer-grid { display: flex; gap: 15px; }
+        .timer-item span { display: block; font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--gold); }
+        .timer-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; }
 
-        .timer-item span {
-            display: block;
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            color: var(--gold);
-        }
+        .music-player { position: fixed; top: 20px; right: 20px; z-index: 1000; }
+        .music-btn { background: rgba(212, 175, 55, 0.2); border: 1px solid var(--gold); color: var(--gold); width: 45px; height: 45px; border-radius: 50%; cursor: pointer; }
 
-        .timer-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            opacity: 0.8;
-        }
-
-        /* Музыкальная кнопка */
-        .music-player {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-
-        .music-btn {
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: 0.3s;
-        }
-
-        .content {
-            padding: 100px 20px;
-            text-align: center;
-            background: #0a0a0a;
-        }
-
-        .quote {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.2rem, 4vw, 2rem);
-            font-style: italic;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-            color: var(--soft-gold);
-        }
+        .content { padding: 150px 20px; text-align: center; min-height: 50vh; }
+        .quote { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; line-height: 1.8; color: #fcfaf2; max-width: 700px; margin: 0 auto; }
 
         .cta-button {
-            margin-top: 50px;
-            padding: 18px 50px;
+            margin-top: 40px;
+            padding: 15px 35px;
             border: 1px solid var(--gold);
             background: none;
             color: var(--gold);
             font-family: 'Cinzel', serif;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             text-decoration: none;
-            display: inline-block;
-            transition: 0.5s;
+            cursor: pointer;
             text-transform: uppercase;
-        }
-
-        .cta-button:hover {
-            background: var(--gold);
-            color: #000;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
         }
     </style>
 </head>
 <body>
 
     <div class="music-player">
-        <audio id="myAudio" loop>
+        <audio id="myAudio" loop preload="auto">
             <source src="music.mp3" type="audio/mpeg">
         </audio>
-        <button class="music-btn" onclick="toggleMusic()">♪</button>
+        <button class="music-btn" id="musicIcon" onclick="toggleMusic()">♪</button>
     </div>
 
     <section class="hero">
-        <div style="font-family: 'Playfair Display'; font-style: italic; letter-spacing: 8px; margin-bottom: 10px; font-size: 1.2rem;">Queen of My Heart</div>
+        <div style="font-family: 'Playfair Display'; font-style: italic; letter-spacing: 5px; margin-bottom: 5px;">Queen of My Heart</div>
         <h1>Её Величество</h1>
         
         <div class="timer-container">
-            <div style="margin-bottom: 15px; font-size: 0.8rem; letter-spacing: 4px; color: var(--gold);">БЕСКОНЕЧНОСТЬ НАЧАЛАСЬ:</div>
+            <div style="margin-bottom: 10px; font-size: 0.7rem; letter-spacing: 3px; color: var(--gold);">МЫ ВМЕСТЕ:</div>
             <div class="timer-grid">
                 <div class="timer-item"><span id="days">0</span><div class="timer-label">Дней</div></div>
                 <div class="timer-item"><span id="hours">0</span><div class="timer-label">Час</div></div>
                 <div class="timer-item"><span id="mins">0</span><div class="timer-label">Мин</div></div>
-                <div class="timer-item"><span id="secs" style="font-size: 1.2rem; opacity: 0.7;">0</span><div class="timer-label">Сек</div></div>
+                <div class="timer-item"><span id="secs">0</span><div class="timer-label">Сек</div></div>
             </div>
         </div>
-        <a href="#about" class="cta-button">Открыть сердце</a>
+        <button class="cta-button" onclick="openHeart()">Открыть сердце</button>
     </section>
 
     <section id="about" class="content">
-        <div class="quote">
+        <div class="quote" id="finalQuote">
             «С 31 июля 2025 года мой мир изменился навсегда. Ты — самое красивое, что когда-либо случалось со мной.»
         </div>
     </section>
 
     <script>
+        const audio = document.getElementById("myAudio");
+        
         function toggleMusic() {
-            var audio = document.getElementById("myAudio");
             if (audio.paused) {
-                audio.play();
-                document.querySelector('.music-btn').style.background = "rgba(212, 175, 55, 0.4)";
+                audio.play().catch(e => console.log("Нужно взаимодействие"));
+                document.getElementById('musicIcon').style.background = "rgba(212, 175, 55, 0.5)";
             } else {
                 audio.pause();
-                document.querySelector('.music-btn').style.background = "rgba(212, 175, 55, 0.1)";
+                document.getElementById('musicIcon').style.background = "rgba(212, 175, 55, 0.2)";
             }
         }
 
-        // УСТАНОВЛЕННАЯ ТОБОЙ ДАТА
-        const startDate = new Date('2025-07-31T14:00:00'); 
+        function openHeart() {
+            // При нажатии включаем музыку (обходим блок браузера)
+            if (audio.paused) toggleMusic();
+            
+            // Скроллим к цитате
+            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+        }
 
+        const startDate = new Date('2025-07-31T14:00:00'); 
         function updateTimer() {
             const now = new Date();
             const diff = now - startDate;
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const mins = Math.floor((diff / 1000 / 60) % 60);
-            const secs = Math.floor((diff / 1000) % 60);
-
-            document.getElementById('days').innerText = days;
-            document.getElementById('hours').innerText = hours;
-            document.getElementById('mins').innerText = mins;
-            document.getElementById('secs').innerText = secs;
+            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('hours').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            document.getElementById('mins').innerText = Math.floor((diff / 1000 / 60) % 60);
+            document.getElementById('secs').innerText = Math.floor((diff / 1000) % 60);
         }
         setInterval(updateTimer, 1000);
         updateTimer();
