@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Queen | Luxury Tribute</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&family=Playfair+Display:italic,wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark: #0a0a0a;
+            --white: #ffffff;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark);
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Элегантный фон с градиентом */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
+            border-bottom: 1px solid var(--gold);
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 8vw, 4rem);
+            letter-spacing: 12px;
+            margin: 20px 0;
+            color: var(--gold);
+            text-transform: uppercase;
+            animation: fadeIn 3s ease-in;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            opacity: 0.7;
+            letter-spacing: 2px;
+        }
+
+        .content-section {
+            padding: 120px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            line-height: 1.6;
+            margin-bottom: 60px;
+            font-style: italic;
+        }
+
+        /* Карточки с достоинствами */
+        .traits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .trait-card {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 50px 30px;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(5px);
+        }
+
+        .trait-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-15px);
+            background: rgba(212, 175, 55, 0.07);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .trait-card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        /* Кнопка */
+        .cta-button {
+            margin-top: 40px;
+            padding: 18px 45px;
+            background: none;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            letter-spacing: 4px;
+            transition: 0.4s;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background: var(--gold);
+            color: var(--dark);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        footer {
+            padding: 80px 20px;
+            text-align: center;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            opacity: 0.4;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="subtitle">Only for my beloved</div>
+        <h1>Её Величество</h1>
+        <div class="subtitle">Воплощение совершенства</div>
+        <a href="#tribute" class="cta-button">Войти в её мир</a>
+    </header>
+
+    <section id="tribute" class="content-section">
+        <div class="quote">
+            «Некоторые женщины — это просто украшение мира, но ты — это сам мир, в котором я хочу жить вечно».
+        </div>
+        
+        <div class="traits">
+            <div class="trait-card">
+                <h3>Красота</h3>
+                <p>Такая редкая и глубокая, что заставляет время замирать. Взгляд, в котором можно утонуть.</p>
+            </div>
+            <div class="trait-card">
+                <h3>Душа</h3>
+                <p>Твое сердце — это самый теплый дом, где всегда найдется место для любви и доброты.</p>
+            </div>
+            <div class="trait-card">
+                <h3>Муза</h3>
+                <p>Ты вдохновляешь на подвиги и заставляешь становиться лучше каждый день.</p>
+            </div>
+        </div>
+
+        <button class="cta-button" onclick="showLove()">Сказать ей главное</button>
+    </section>
+
+    <footer>
+        CREATED WITH DEEP ADMIRATION | 2026
+    </footer>
+
+    <script>
+        function showLove() {
+            alert("Ты — мое самое большое достижение и главная награда в этой жизни. Люблю тебя!");
+        }
+    </script>
+
+</body>
+</html>
