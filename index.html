@@ -1,172 +1,172 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>The Queen</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&family=Playfair+Display:italic,wght@400;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root { --gold: #D4AF37; --dark: #0a0a0a; --white: #ffffff; }
-        body, html { margin: 0; padding: 0; background-color: var(--dark); color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
-        
-        /* Начальный экран */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
-            transition: 1.5s ease-in-out;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Queen</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@200;400&family=Playfair+Display:italic,wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --gold: #D4AF37; --dark: #0a0a0a; --white: #ffffff; }
+        body, html { margin: 0; padding: 0; background-color: var(--dark); color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        
+        /* Начальный экран */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
+            transition: 1.5s ease-in-out;
+        }
 
-        /* Блок с фото (ИСПРАВЛЕНО под расширение .jpg) */
-        #photo-section {
-            display: none;
-            height: 100vh;
-            width: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('photo.jpg');
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: 2.5s ease;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
+        /* Блок с фото (под расширение .jpeg) */
+        #photo-section {
+            display: none;
+            height: 100vh;
+            width: 100%;
+            /* ВАЖНО: здесь теперь .jpeg */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('photo.jpeg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: 2.5s ease;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
 
-        h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 5rem); letter-spacing: 12px; color: var(--gold); text-transform: uppercase; margin: 15px 0; }
+        h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 5rem); letter-spacing: 12px; color: var(--gold); text-transform: uppercase; margin: 15px 0; }
 
-        .timer-container {
-            margin: 25px 0;
-            padding: 20px 30px;
-            border: 1px solid var(--gold);
-            background: rgba(212, 175, 55, 0.05);
-            backdrop-filter: blur(5px);
-        }
+        .timer-container {
+            margin: 25px 0;
+            padding: 20px 30px;
+            border: 1px solid var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+            backdrop-filter: blur(5px);
+        }
 
-        .timer-grid { display: flex; gap: 20px; }
-        .timer-item span { display: block; font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold); }
-        .timer-label { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; }
+        .timer-grid { display: flex; gap: 20px; }
+        .timer-item span { display: block; font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold); }
+        .timer-label { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; }
 
-        .cta-button {
-            margin-top: 30px;
-            padding: 18px 45px;
-            border: 1px solid var(--gold);
-            background: none;
-            color: var(--gold);
-            font-family: 'Cinzel', serif;
-            letter-spacing: 5px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.4s;
-        }
+        .cta-button {
+            margin-top: 30px;
+            padding: 18px 45px;
+            border: 1px solid var(--gold);
+            background: none;
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.4s;
+        }
 
-        .cta-button:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(212, 175, 55, 0.3); }
+        .cta-button:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(212, 175, 55, 0.3); }
 
-        /* Модальное окно */
-        #music-modal {
-            display: none;
-            position: fixed;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(10, 10, 10, 0.98);
-            padding: 50px 30px;
-            border: 1px solid var(--gold);
-            z-index: 1000;
-            text-align: center;
-            backdrop-filter: blur(20px);
-            width: 85%;
-            max-width: 420px;
-            box-shadow: 0 0 50px rgba(0,0,0,1);
-        }
+        /* Модальное окно */
+        #music-modal {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(10, 10, 10, 0.98);
+            padding: 50px 30px;
+            border: 1px solid var(--gold);
+            z-index: 1000;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            width: 85%;
+            max-width: 420px;
+            box-shadow: 0 0 50px rgba(0,0,0,1);
+        }
 
-        .quote-text {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.3rem, 4vw, 2.2rem);
-            font-style: italic;
-            line-height: 1.6;
-            max-width: 80%;
-            margin: 0 auto;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-        }
-    </style>
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.3rem, 4vw, 2.2rem);
+            font-style: italic;
+            line-height: 1.6;
+            max-width: 80%;
+            margin: 0 auto;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
+    </style>
 </head>
 <body>
 
-    <audio id="myAudio" loop><source src="music.mp3" type="audio/mpeg"></audio>
+    <audio id="myAudio" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
-    <section id="start-screen" class="hero">
-        <div style="font-family: 'Playfair Display'; font-style: italic; letter-spacing: 6px; opacity: 0.8; margin-bottom: 10px;">Dedicated to My Muse</div>
-        <h1>Её Величество</h1>
-        
-        <div class="timer-container">
-            <div class="timer-grid">
-                <div class="timer-item"><span id="days">0</span><div class="timer-label">Дней</div></div>
-                <div class="timer-item"><span id="hours">0</span><div class="timer-label">Час</div></div>
-                <div class="timer-item"><span id="mins">0</span><div class="timer-label">Мин</div></div>
-                <div class="timer-item"><span id="secs">0</span><div class="timer-label">Сек</div></div>
-            </div>
-        </div>
-        
-        <button class="cta-button" onclick="askMusic()">Открыть сердце</button>
-    </section>
+    <section id="start-screen" class="hero">
+        <div style="font-family: 'Playfair Display'; font-style: italic; letter-spacing: 6px; opacity: 0.8; margin-bottom: 10px;">Dedicated to My Muse</div>
+        <h1>Её Величество</h1>
+        
+        <div class="timer-container">
+            <div class="timer-grid">
+                <div class="timer-item"><span id="days">0</span><div class="timer-label">Дней</div></div>
+                <div class="timer-item"><span id="hours">0</span><div class="timer-label">Час</div></div>
+                <div class="timer-item"><span id="mins">0</span><div class="timer-label">Мин</div></div>
+                <div class="timer-item"><span id="secs">0</span><div class="timer-label">Сек</div></div>
+            </div>
+        </div>
+        
+        <button class="cta-button" onclick="askMusic()">Открыть сердце</button>
+    </section>
 
-    <div id="music-modal">
-        <div style="font-family: 'Playfair Display'; font-size: 1.4rem; color: var(--gold); margin-bottom: 15px;">Послушайте...</div>
-        <p style="font-size: 0.9rem; letter-spacing: 1px; line-height: 1.5; opacity: 0.9;">Эта музыка была выбрана специально для Вас. Желаете её услышать?</p>
-        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 25px;">
-            <button class="cta-button" style="font-size: 0.7rem; padding: 12px 25px;" onclick="startEverything(true)">Да, включить</button>
-            <button class="cta-button" style="font-size: 0.7rem; padding: 12px 25px; border-color: #444; color: #777;" onclick="startEverything(false)">Нет</button>
-        </div>
-    </div>
+    <div id="music-modal">
+        <div style="font-family: 'Playfair Display'; font-size: 1.4rem; color: var(--gold); margin-bottom: 15px;">Послушайте...</div>
+        <p style="font-size: 0.9rem; letter-spacing: 1px; line-height: 1.5; opacity: 0.9;">Эта музыка была выбрана специально для Вас. Желаете её услышать?</p>
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 25px;">
+            <button class="cta-button" style="font-size: 0.7rem; padding: 12px 25px;" onclick="startEverything(true)">Да, включить</button>
+            <button class="cta-button" style="font-size: 0.7rem; padding: 12px 25px; border-color: #444; color: #777;" onclick="startEverything(false)">Нет</button>
+        </div>
+    </div>
 
-    <section id="photo-section">
-        <div class="quote-text">
-            «С 12 мая 2026 года мой мир изменился навсегда. Ты — самое красивое, что когда-либо случалось со мной.»
-        </div>
-        <div style="margin-top: 30px; font-family: 'Cinzel'; font-size: 0.8rem; letter-spacing: 5px; color: var(--gold);">Навсегда твой.</div>
-    </section>
+    <section id="photo-section">
+        <div class="quote-text">
+            «С 31 июля 2025 года мой мир изменился навсегда. Ты — самое красивое, что когда-либо случалось со мной.»
+        </div>
+        <div style="margin-top: 30px; font-family: 'Cinzel'; font-size: 0.8rem; letter-spacing: 5px; color: var(--gold);">Навсегда твой.</div>
+    </section>
 
-    <script>
-        function askMusic() {
-            document.getElementById('music-modal').style.display = 'block';
-        }
+    <script>
+        function askMusic() {
+            document.getElementById('music-modal').style.display = 'block';
+        }
 
-        function startEverything(playMusic) {
-            document.getElementById('music-modal').style.display = 'none';
-            
-            if (playMusic) {
-                const audio = document.getElementById('myAudio');
-                audio.play().catch(err => console.log("Audio play failed"));
-            }
+        function startEverything(playMusic) {
+            document.getElementById('music-modal').style.display = 'none';
+            
+            if (playMusic) {
+                const audio = document.getElementById('myAudio');
+                audio.play().catch(err => console.log("Audio play failed"));
+            }
 
-            const start = document.getElementById('start-screen');
-            const photo = document.getElementById('photo-section');
-            
-            start.style.opacity = '0';
-            setTimeout(() => {
-                start.style.display = 'none';
-                photo.style.display = 'flex';
-                setTimeout(() => { photo.style.opacity = '1'; }, 100);
-            }, 1500);
-        }
+            const start = document.getElementById('start-screen');
+            const photo = document.getElementById('photo-section');
+            
+            start.style.opacity = '0';
+            setTimeout(() => {
+                start.style.display = 'none';
+                photo.style.display = 'flex';
+                setTimeout(() => { photo.style.opacity = '1'; }, 100);
+            }, 1500);
+        }
 
-        // Установлена дата: 12 мая 2026 года
-        const startDate = new Date('2026-05-12T00:00:00'); 
-        function updateTimer() {
-            const now = new Date();
-            const diff = now - startDate;
-            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-            document.getElementById('hours').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            document.getElementById('mins').innerText = Math.floor((diff / 1000 / 60) % 60);
-            document.getElementById('secs').innerText = Math.floor((diff / 1000) % 60);
-        }
-        setInterval(updateTimer, 1000);
-        updateTimer();
-    </script>
+        const startDate = new Date('2025-07-31T14:00:00'); 
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+            document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById('hours').innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            document.getElementById('mins').innerText = Math.floor((diff / 1000 / 60) % 60);
+            document.getElementById('secs').innerText = Math.floor((diff / 1000) % 60);
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
 </body>
-</html>
+</html> 
