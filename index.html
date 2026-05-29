@@ -28,7 +28,6 @@
             display: none;
             height: 100vh;
             width: 100%;
-            /* ВАЖНО: здесь теперь .jpeg */
             background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('photo.jpeg');
             background-size: cover;
             background-position: center;
@@ -102,7 +101,7 @@
 
     <section id="start-screen" class="hero">
         <div style="font-family: 'Playfair Display'; font-style: italic; letter-spacing: 6px; opacity: 0.8; margin-bottom: 10px;">Dedicated to My Muse</div>
-        <h1>Её Величество</h1>
+        <h1>Айдай</h1>
         
         <div class="timer-container">
             <div class="timer-grid">
@@ -127,7 +126,7 @@
 
     <section id="photo-section">
         <div class="quote-text">
-            «С 31 июля 2025 года мой мир изменился навсегда. Ты — самое красивое, что когда-либо случалось со мной.»
+            «С 12 мая 2026 года мой мир изменился навсегда. Ты — самое красивое, что когда-либо случалось со мной.»
         </div>
         <div style="margin-top: 30px; font-family: 'Cinzel'; font-size: 0.8rem; letter-spacing: 5px; color: var(--gold);">Навсегда твой.</div>
     </section>
@@ -156,7 +155,8 @@
             }, 1500);
         }
 
-        const startDate = new Date('2025-07-31T14:00:00'); 
+        // Установлена дата: 12 мая 2026 года
+        const startDate = new Date('2026-05-12T00:00:00'); 
         function updateTimer() {
             const now = new Date();
             const diff = now - startDate;
